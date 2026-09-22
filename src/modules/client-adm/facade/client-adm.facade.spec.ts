@@ -5,6 +5,7 @@ import AddClientUseCase from "../usecase/add-client/add-client.usecase";
 import ClientAdmFacade from "./client-adm.facade";
 import FindClientUseCase from "../usecase/find-client/find-client.usecase";
 import ClientAdmFacadeFactory from "../factory/facade.factory";
+import Address from "../../@shared/domain/value-object/address";
 
 describe("ClientAdmFacade test", () => {
     let sequelize: Sequelize;
@@ -39,18 +40,27 @@ describe("ClientAdmFacade test", () => {
             id: "1",
             name: "Client Test",
             email: "client@test.com",
-            address: "Address Test",
+            document: "1234-5678",
+            address: new Address(
+                "Rua 123",
+                "99",
+                "Casa Verde",
+                "Criciúma",
+                "SC",
+                "88888-888",
+            )
         }
         await facade.add(input);
 
-        const product = await ClientModel.findOne({
+        const client = await ClientModel.findOne({
             where: { id: "1" }
         });
-        expect(product).not.toBeNull();
-        expect(product.id).toBe(input.id);
-        expect(product.name).toBe(input.name);
-        expect(product.email).toBe(input.email);
-        expect(product.address).toBe(input.address);
+        expect(client).not.toBeNull();
+        expect(client.id).toBe(input.id);
+        expect(client.name).toBe(input.name);
+        expect(client.email).toBe(input.email);
+        expect(client.document).toBe(input.document);
+        expect(client.street).toBe(input.address.street);
     });
 
     it("should find a client", async () => {
@@ -63,20 +73,33 @@ describe("ClientAdmFacade test", () => {
         
         const facade = ClientAdmFacadeFactory.create();
 
-        await ClientModel.create({
+        const input = {
             id: "1",
             name: "Client Test",
             email: "client@test.com",
-            address: "Address Test",
+            document: "1234-5678",
+            street: "Rua 123",
+            number: "99",
+            complement: "Casa Verde",
+            city: "Criciúma",
+            state: "SC",
+            zipcode: "88888-888",
             createdAt: new Date(),
             updatedAt: new Date(),
-        });
+        }
+        await ClientModel.create(input);
 
         const result = await facade.find({id: "1"});
         expect(result).not.toBeNull();
-        expect(result.id).toBe("1");
-        expect(result.name).toBe("Client Test");
-        expect(result.email).toBe("client@test.com");
-        expect(result.address).toBe("Address Test");
+        expect(result.id).toBe(input.id);
+        expect(result.name).toBe(input.name);
+        expect(result.email).toBe(input.email);
+        expect(result.document).toBe(input.document);
+        expect(result.address.street).toBe(input.street);
+        expect(result.address.number).toBe(input.number);
+        expect(result.address.complement).toBe(input.complement);
+        expect(result.address.city).toBe(input.city);
+        expect(result.address.state).toBe(input.state);
+        expect(result.address.zipCode).toBe(input.zipcode);
     });
 });
