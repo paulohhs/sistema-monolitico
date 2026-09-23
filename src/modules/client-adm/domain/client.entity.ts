@@ -25,6 +25,8 @@ export default class Client extends BaseEntity implements AggregateRoot {
         this._email = props.email;
         this._document = props.document;
         this._address = props.address;
+
+        this.validate();
     }
 
     get name(): string {
@@ -41,5 +43,11 @@ export default class Client extends BaseEntity implements AggregateRoot {
 
     get address(): Address {
         return this._address;
+    }
+
+    validate() {
+        if (! this._name || this._name.length === 0) {
+            throw new Error("Name is required")
+        }
     }
 }
