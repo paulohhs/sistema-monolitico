@@ -50,17 +50,14 @@ describe("ClientAdmFacade test", () => {
                 "88888-888",
             )
         }
-        await facade.add(input);
+        const client = await facade.add(input);
 
-        const client = await ClientModel.findOne({
-            where: { id: "1" }
-        });
         expect(client).not.toBeNull();
         expect(client.id).toBe(input.id);
         expect(client.name).toBe(input.name);
         expect(client.email).toBe(input.email);
         expect(client.document).toBe(input.document);
-        expect(client.street).toBe(input.address.street);
+        expect(client.address.street).toBe(input.address.street);
     });
 
     it("should find a client", async () => {
