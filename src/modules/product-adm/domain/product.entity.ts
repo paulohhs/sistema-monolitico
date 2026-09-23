@@ -27,6 +27,8 @@ export default class Product extends BaseEntity implements AggregateRoot {
         this._purchasePrice = props.purchasePrice
         this._salesPrice = this.calculateSalesPrice()
         this._stock = props.stock
+
+        this.validate();
     }
 
     get name(): string {
@@ -63,6 +65,16 @@ export default class Product extends BaseEntity implements AggregateRoot {
 
     set stock(stock: number) {
         this._stock = stock;
+    }
+
+    validate() {
+        if (this.name.length <= 0) {
+            throw new Error("The name is required");
+        }
+
+        if (this.purchasePrice < 0) {
+            throw new Error("The purchase price must be greather or equal zero");
+        }
     }
 
     calculateSalesPrice(): number {
