@@ -54,9 +54,9 @@ export default class InvoiceRepository implements InvoiceGateway {
         }));
 
         return new Invoice({
-            id: new Id("1"),
-            name: "Invoice Test",
-            document: "Document Test",
+            id: new Id(invoice.id),
+            name: invoice.name,
+            document: invoice.document,
             address: address,
             items: items,
         });
