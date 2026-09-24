@@ -23,6 +23,7 @@ describe("GenerateInvoice usecase unit test", () => {
       zipCode: "ZipCode Test",
       items: [{
           id: "1",
+          productId: "1p",
           name: "Invoice Item Test",
           price: 100,
       }],
@@ -43,6 +44,7 @@ describe("GenerateInvoice usecase unit test", () => {
     expect(result.items).toEqual([
         {
             id: input.items[0].id,
+            productId: input.items[0].productId,
             name: input.items[0].name,
             price: input.items[0].price,
         }

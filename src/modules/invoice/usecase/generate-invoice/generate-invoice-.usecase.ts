@@ -13,6 +13,7 @@ export default class GenerateInvoiceUseCase implements UseCaseInterface {
         const itemsProps = input.items.map((item) => {
             return new InvoiceItem({
                 id: new Id(item.id),
+                productId: item.productId,
                 name:item.name,
                 price:item.price,
             });
@@ -36,6 +37,7 @@ export default class GenerateInvoiceUseCase implements UseCaseInterface {
 
         const items = invoice.items.map(item => ({
             id: item.id.id,
+            productId: item.productId,
             name: item.name,
             price: item.price,
         }))

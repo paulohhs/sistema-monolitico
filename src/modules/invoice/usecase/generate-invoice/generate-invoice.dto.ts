@@ -9,6 +9,7 @@ export interface GenerateInvoiceUseCaseInputDto {
   zipCode: string;
   items: {
     id: string;
+    productId: string;
     name: string;
     price: number;
   }[];
@@ -26,6 +27,7 @@ export interface GenerateInvoiceUseCaseOutputDto {
   zipCode: string;
   items: {
     id: string;
+    productId: string;
     name: string;
     price: number;
   }[];

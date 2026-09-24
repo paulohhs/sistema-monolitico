@@ -37,11 +37,13 @@ describe("E2E test for invoice", () => {
                     id: "1it",
                     name: "Item 1",
                     price: 50,
+                    productId: "1p",
                 },
                 {
                     id: "2it",
                     name: "Item 2",
                     price: 50,
+                    productId: "2p",
                 }
             ],
             total: 100,

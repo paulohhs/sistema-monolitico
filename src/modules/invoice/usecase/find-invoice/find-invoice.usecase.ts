@@ -13,7 +13,9 @@ export default class FindInvoiceUseCase implements UseCaseInterface {
         }
 
         const items = invoice.items.map((item) => {
-            return {id: item.id.id,
+            return {
+                id: item.id.id,
+                productId: item.productId,
                 name: item.name,
                 price: item.price,
             }

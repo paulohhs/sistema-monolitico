@@ -15,6 +15,7 @@ const address = new Address(
 
 const invoiceItem = new InvoiceItem({
     id: new Id("1"),
+    productId: "1p",
     name: "Invoice Item Test",
     price: 100,
 })
@@ -60,6 +61,7 @@ describe("FindInvoice usecase unit test", () => {
         expect(foundedInvoice.items).toEqual([
             {
                 id: invoiceItem.id.id,
+                productId: invoiceItem.productId,
                 name: invoiceItem.name,
                 price: invoiceItem.price,
             }
