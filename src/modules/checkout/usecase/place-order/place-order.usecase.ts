@@ -77,7 +77,8 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
                 zipCode: client.address.zipCode,
                 items: products.map((p) => {
                     return {
-                        id: p.id.id,
+                        id: new Id().id,
+                        productId: p.id.id,
                         name: p.name,
                         price: p.salesPrice,
                     };

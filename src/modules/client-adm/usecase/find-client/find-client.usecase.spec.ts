@@ -39,7 +39,14 @@ describe("Find Client Usecase unit test", () => {
         expect(clientFound.id).toEqual(input.id);
         expect(clientFound.name).toEqual(client.name);
         expect(clientFound.email).toEqual(client.email);
-        expect(clientFound.address).toEqual(client.address);
+        expect(clientFound.address).toEqual({
+            street: client.address.street,
+            number: client.address.number,
+            complement: client.address.complement,
+            city: client.address.city,
+            state: client.address.state,
+            zipCode: client.address.zipCode,
+        });
         expect(clientFound.createdAt).toEqual(client.createdAt)
         expect(clientFound.updatedAt).toEqual(client.updatedAt)
     });

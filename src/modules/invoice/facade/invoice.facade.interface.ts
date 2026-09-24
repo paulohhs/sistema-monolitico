@@ -8,7 +8,8 @@ export interface GenerateInvoiceFacadeInputDto {
   state: string;
   zipCode: string;
   items: {
-    id: string;
+    id?: string;
+    productId: string,
     name: string;
     price: number;
   }[];
@@ -26,6 +27,7 @@ export interface GenerateInvoiceFacadeOutputDto {
   zipCode: string;
   items: {
     id: string;
+    productId: string,
     name: string;
     price: number;
   }[];

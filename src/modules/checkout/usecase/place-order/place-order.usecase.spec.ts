@@ -313,12 +313,14 @@ describe("PlaceOrderUseCase unit test", () => {
                     zipCode: clientProps.address.zipCode,
                     items: [
                         {
-                            id: products["1"].id.id,
+                            id: expect.any(String),
+                            productId: products["1"].id.id,
                             name: products["1"].name,
                             price: products["1"].salesPrice,
                         },
                         {
-                            id: products["2"].id.id,
+                            id: expect.any(String),
+                            productId: products["2"].id.id,
                             name: products["2"].name,
                             price: products["2"].salesPrice,
                         }

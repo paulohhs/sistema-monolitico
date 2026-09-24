@@ -47,6 +47,7 @@ describe("InvoiceFacade test", () => {
       zipCode: "ZipCode Test",
       items: [{
           id: "1",
+          productId:"1it",
           name: "Invoice Item Test",
           price: 100,
       }],
@@ -67,6 +68,7 @@ describe("InvoiceFacade test", () => {
         {
             id: input.items[0].id,
             name: input.items[0].name,
+            productId: input.items[0].productId,
             price: input.items[0].price,
         }
     ]);
@@ -86,6 +88,7 @@ describe("InvoiceFacade test", () => {
         zipCode: "ZipCode Test",
         items: [{
             id: "item-1",
+            productId: "1it",
             name: "Item 1",
             price: 100,
         }],
@@ -118,6 +121,7 @@ describe("InvoiceFacade test", () => {
     expect(invoice.items).toEqual([
         {
             id: invoiceProps.items[0].id,
+            productId: invoiceProps.items[0].productId,
             name: invoiceProps.items[0].name,
             price: invoiceProps.items[0].price,
         }

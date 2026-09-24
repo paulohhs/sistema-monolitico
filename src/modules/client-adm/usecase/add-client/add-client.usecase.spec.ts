@@ -32,6 +32,13 @@ describe("Add Client test", () => {
         expect(result.id).toBeDefined();
         expect(result.name).toEqual(input.name);
         expect(result.email).toEqual(input.email);
-        expect(result.address).toEqual(input.address);
+        expect(result.address).toEqual({
+            street: input.address.street,
+            number: input.address.number,
+            complement: input.address.complement,
+            city: input.address.city,
+            state: input.address.state,
+            zipCode: input.address.zipCode,
+        });
     });
 });

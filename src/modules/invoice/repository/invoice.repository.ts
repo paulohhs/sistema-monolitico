@@ -20,6 +20,7 @@ export default class InvoiceRepository implements InvoiceGateway {
             zipCode: invoice.address.zipCode,
             items: invoice.items.map((item) => ({
                 id: item.id.id,
+                productId: item.productId,
                 name: item.name,
                 price: item.price,
             })),
@@ -49,14 +50,15 @@ export default class InvoiceRepository implements InvoiceGateway {
 
         const items = invoice.items.map(item => new InvoiceItem({
             id: new Id(item.id),
+            productId: item.productId,
             name: item.name,
             price: item.price,
         }));
 
         return new Invoice({
-            id: new Id("1"),
-            name: "Invoice Test",
-            document: "Document Test",
+            id: new Id(invoice.id),
+            name: invoice.name,
+            document: invoice.document,
             address: address,
             items: items,
         });

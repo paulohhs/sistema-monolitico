@@ -37,6 +37,7 @@ describe("InvoiceRepository test", () => {
         );
         const invoiceItem = new InvoiceItem({
             id: new Id("item-1"),
+            productId: "1p",
             name: "Item Test",
             price: 100,
         });
@@ -71,6 +72,7 @@ describe("InvoiceRepository test", () => {
                 invoice_id: invoice.id.id,
                 name: invoiceItem.name,
                 price: invoiceItem.price,
+                productId: invoiceItem.productId,
             }]
         })
     });
@@ -88,6 +90,7 @@ describe("InvoiceRepository test", () => {
             zipCode: "ZipCode Test",
             items: [{
                 id: "item-1",
+                productId: "1p",
                 name: "Item 1",
                 price: 100,
             }],
@@ -110,6 +113,7 @@ describe("InvoiceRepository test", () => {
         expect(invoiceDb.address.state).toEqual(invoiceProps.state);
         expect(invoiceDb.address.zipCode).toEqual(invoiceProps.zipCode);
         expect(invoiceDb.items[0].id.id).toEqual(invoiceProps.items[0].id);
+        expect(invoiceDb.items[0].productId).toEqual(invoiceProps.items[0].productId);
         expect(invoiceDb.items[0].name).toEqual(invoiceProps.items[0].name);
         expect(invoiceDb.items[0].price).toEqual(invoiceProps.items[0].price);
     });
