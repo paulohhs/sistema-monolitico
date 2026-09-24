@@ -15,6 +15,6 @@ export const migrator = (sequelize: Sequelize) => {
     },
     context: sequelize,
     storage: new SequelizeStorage({ sequelize }),
-    logger: console,
+    logger: null,
   });
 };
