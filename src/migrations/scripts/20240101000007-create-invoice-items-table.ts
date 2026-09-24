@@ -8,6 +8,10 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       primaryKey: true,
       allowNull: false,
     },
+    productId: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING(255),
       allowNull: false,
