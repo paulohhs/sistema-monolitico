@@ -76,6 +76,62 @@ describe("E2E test for checkout", () => {
         ]);
     });
 
+    it("should place an order for 2 clients with the same product", async() => {
+        await ClientModel.create({
+            id: "1c",
+            name: "Client 1",
+            email: "client@teste.com",
+            document: "1234-5678",
+            street: "Street",
+            number: "1",
+            complement: "",
+            city: "City",
+            state: "State",
+            zipcode: "000-00",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+        await ClientModel.create({
+            id: "2c",
+            name: "Client 2",
+            email: "client@teste.com",
+            document: "3456-5789",
+            street: "Street",
+            number: "1",
+            complement: "",
+            city: "City",
+            state: "State",
+            zipcode: "000-00",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+        await ProductModel.create({
+            id: "1p",
+            name: "Product 1",
+            description: "Product Descript 1",
+            purchasePrice: 50,
+            salesPrice: 100,
+            stock: 1,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+        const response = await request(app)
+            .post("/checkout")
+            .send({
+                clientId: "1c",
+                products: ["1p"],
+            })
+        expect(response.status).toBe(201);
+
+        const response2 = await request(app)
+            .post("/checkout")
+            .send({
+                clientId: "2c",
+                products: ["1p"],
+            })
+        expect(response2.status).toBe(201);
+    });
+
     it("should not place an order", async() => {
         await ClientModel.create({
             id: "1c",
